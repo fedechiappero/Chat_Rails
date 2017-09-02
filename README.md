@@ -24,7 +24,7 @@ rake db:reset db:migrate
 hasta aca es lo basico, hay un tipo fosuserbundle de symfony que se llama devise, permite
 -logearse
 -crear usuarios
--cambiar contraseña
+-cambiar contraseÃ±a
 -etc
 
 una seccion para crear room chats y enviar texto
@@ -42,4 +42,5 @@ los mensajes se guardan en la db en texto plano (WRONG!) quiero que sea privado 
 -hay que encriptar, despues se ve si con encriptacion asimetrica, simetrica o alguna otra que encuentre por ahi
 
 CAMBIOS no tan PRINCIPALES A HACER:
--menu bonito en el header con opciones de navegacion
+-menu bonito en el header con opciones de navegacion(OK)
+-la identificacion de los usuarios es por email, podrian loguearse solo con correos del dominio de la empresa, en vez de gmail, outlook, etc

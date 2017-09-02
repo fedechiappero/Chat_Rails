@@ -13,25 +13,43 @@
 <nav class="navbar navbar-dark bg-inverse">
   <%= link_to 'CableChat', root_path, class: 'navbar-brand' %>
 
-  <% if user_signed_in? %>
     <ul class="nav navbar-nav pull-xs-right">
-      <li class="nav-item">
-        <span class="text-muted">Logged in as <strong><%= current_user.name %></strong></span>
-      </li>
-      <li class="nav-item active">
-        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <span class="text-muted">Logged in as <strong><%= current_user.name %></strong></span>
+        </li>
+        <li class="nav-item active">
+          <%= link_to 'Account', edit_user_registration_path, class: 'nav-link' %>
+        </li>
+
+        <li class="nav-item active">
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to 'Sign up', new_user_registration_path, :class => 'nav-link'  %>
+        </li>
+      <% end %>
     </ul>
-  <% end %>
+
 </nav>
 
 <div class="container">
+
+  <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
   <%= yield %>
+
 </div>
 
 <footer>
   <div class="container">
-    <p class="text-muted">Created by <%= link_to 'Ilya Bodrov', 'http://bodrovis.tech' %></p>
+    <p class="text-muted">Created by <%= link_to 'Ilya Bodrov', 'http://bodrovis.tech' %> | Modified by <%= link_to 'Federico Chiappero', 'https://www.linkedin.com/in/federico-chiappero-04595292' %></p>
   </div>
 </footer>
 </body>
