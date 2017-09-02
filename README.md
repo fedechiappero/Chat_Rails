@@ -22,10 +22,10 @@ rake db:reset db:migrate
 
 
 hasta aca es lo basico, hay un tipo fosuserbundle de symfony que se llama devise, permite
-- logearse
-- crear usuarios
-- cambiar contraseÃ±a
-- etc
+-logearse
+-crear usuarios
+-cambiar contraseña
+-etc
 
 una seccion para crear room chats y enviar texto
 
@@ -34,13 +34,12 @@ los demas usuarios entran al room y hacen lo mismo
 CAMBIOS PRINCIPALES A HACER:
 
 los room chat son publicos, uno lo crea, cualquiera lo ve y se mete (WRONG!) quiero que sea privado, so...
-- uno crea un room e invita solo a los usuarios con los que quiere escribir
-- solo esos usuarios pueden enviar texto
-- nadie que no este invitado puede siquiera ver el room
+-uno crea un room e invita solo a los usuarios con los que quiere escribir
+-solo esos usuarios pueden enviar texto
+-nadie que no este invitado puede siquiera ver el room
 
 los mensajes se guardan en la db en texto plano (WRONG!) quiero que sea privado privado, so...
-- hay que encriptar, despues se ve si con encriptacion asimetrica, simetrica o alguna otra que encuentre por ahi
+-hay que encriptar, despues se ve si con encriptacion asimetrica, simetrica o alguna otra que encuentre por ahi
 
 CAMBIOS no tan PRINCIPALES A HACER:
-- menu bonito en el header con opciones de navegacion
-- 
+-menu bonito en el header con opciones de navegacion
