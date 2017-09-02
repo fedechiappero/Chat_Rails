@@ -18,10 +18,12 @@
         <li class="nav-item">
           <span class="text-muted">Logged in as <strong><%= current_user.name %></strong></span>
         </li>
+          <li class="nav-item">
+            <%= image_tag current_user.avatar.url(:thumb) %>
+          </li>
         <li class="nav-item active">
           <%= link_to 'Account', edit_user_registration_path, class: 'nav-link' %>
         </li>
-
         <li class="nav-item active">
           <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
         </li>

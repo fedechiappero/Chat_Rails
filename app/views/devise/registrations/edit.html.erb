@@ -5,7 +5,7 @@
 
   <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, :disabled => true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -20,6 +20,11 @@
   <div class="form-group">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= image_tag current_user.avatar.url(:medium) %> <br>
+    <%= f.file_field :avatar %>
   </div>
 
   <div class="form-group">
