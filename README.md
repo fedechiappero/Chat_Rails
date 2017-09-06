@@ -43,4 +43,11 @@ los mensajes se guardan en la db en texto plano (WRONG!) quiero que sea privado 
 
 CAMBIOS no tan PRINCIPALES A HACER:
 -menu bonito en el header con opciones de navegacion(OK)
--la identificacion de los usuarios es por email, podrian loguearse solo con correos del dominio de la empresa, en vez de gmail, outlook, etc
+-la identificacion de los usuarios es por email, podrian loguearse solo con correos del dominio de la empresa, en vez de gmail, outlook, etc (por ahora solo puse que el email no se puede editar)
+
+https://stackoverflow.com/questions/26721790/rails-configuration-secret-key-base-returning-nil/26722044#26722044
+http://api.rubyonrails.org/classes/ActiveSupport/MessageEncryptor.html
+https://stackoverflow.com/questions/5492377/encrypt-decrypt-using-rails
+
+dentro de un controlador, render plain: params[:paramentro].inspect es como el var_dump de php
+en la vista <%= link_to 'somewhere', image, method: :delete, data: {confirm: 'seguro?'}%>

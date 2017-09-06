@@ -11,6 +11,9 @@ class User < ApplicationRecord
     email.split('@')[0]
   end
 
+  #this line prevents users from using any email server
+  validates_format_of :email, with: /\@yourdomain\.com/, message: 'You should have an email from yourdomain.com'
+
   has_attached_file :avatar, :styles => { :medium => '300x300>', :thumb => '30x30#' }, :default_url => '/images/:style/missing.jpg'
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 

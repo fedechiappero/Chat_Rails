@@ -6,7 +6,7 @@ class Message < ApplicationRecord
 
   after_create_commit { MessageBroadcastJob.perform_later(self) }
 
-  def timestamp
+  def timestamp #desde que uso time_ago_in_words(message.timestamp) en la vista, este procedimiento no se usa
     created_at.strftime('%H:%M:%S %d %B %Y')
   end
 end
