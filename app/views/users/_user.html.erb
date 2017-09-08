@@ -1,1 +1,5 @@
-<li><%= link_to "Enter #{user.name}", user_path(user) %></li>
+<% @users = User.all %>
+<% @users.each do |user| %>
+    <%= image_tag user.image_url(:thumb).to_s %>
+    <%= user.email %><br/>
+<% end %>

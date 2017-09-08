@@ -1,6 +1,11 @@
 class ChatRoomsController < ApplicationController
   def index
-    @chat_rooms = ChatRoom.all #NO ALL -> where chatroom.participantes.id = usuarioLogueado.id OR el logueado es el admin
+    #@chat_rooms = ChatRoom.where user_id: current_user.id #NO ALL -> where chatroom.participantes.id = usuarioLogueado.id OR el logueado es el admin
+
+    #@chat_rooms = ChatRoom.joins('INNER JOIN participants ON chat_rooms.id = participants.chat_room_id WHERE participants.user_id = ',current_user.id.to_s)
+    @chat_rooms = ChatRoom.joins(:participants).where('participants.user_id' => current_user.id.to_s).order('updated_at DESC')
+    #render plain: @chat_rooms.inspect
+    #@users = User.all
   end
 
   def new #para crear un nuevo chat
@@ -9,7 +14,6 @@ class ChatRoomsController < ApplicationController
 
   def create #guarda un chat en la db
     @chat_room = current_user.chat_rooms.build(chat_room_params)
-    @chat_room
     if @chat_room.save
       flash[:success] = 'Chat room added!'
       redirect_to chat_rooms_path
@@ -23,11 +27,12 @@ class ChatRoomsController < ApplicationController
   end
 
   def show
-    #if(el id del usuario logueado esta en los participantes) en caso de que ingrese la url del chat
-    @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
-    @message = Message.new
-    #else
-    #no tiene permisos para estar aca (o alguna pagina de error 404)
+    @chat_room = ChatRoom.includes(:messages).joins(:participants).find_by('chat_rooms.id' => params[:id], 'participants.user_id' => current_user.id.to_s)
+    if @chat_room != nil
+      @message = Message.new
+    else
+      not_found #en realidad deberia ser un 403
+    end
   end
 
   private

@@ -1,13 +1,26 @@
 <h1>Add chat room</h1>
 
+<%- if @chat_room.errors.any? %>
+  <div class="alert alert-danger">
+    <h4 class="alert-heading">Oh No!</h4>
+    <p>Something went wrong</p>
+  </div>
+<% end %>
+
 <%= form_for @chat_room do |f| %>
 
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+    <%- if @chat_room.errors[:title].any? %>
+      <span class="badge bg-danger">
+        <%= @chat_room.errors[:title].first %>
+      </span>
+    <% end %>
   </div>
 
   <%= hidden_field_tag 'chat_room[user_ids][]', current_user.id %>
+  <%= f.label 'Add some Users' %>
   <% User.all.each do |user| %>
     <% if user.id != current_user.id %>
       <div class="form-group">

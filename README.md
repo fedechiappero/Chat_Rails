@@ -34,9 +34,9 @@ los demas usuarios entran al room y hacen lo mismo
 CAMBIOS PRINCIPALES A HACER:
 
 los room chat son publicos, uno lo crea, cualquiera lo ve y se mete (WRONG!) quiero que sea privado, so...
--uno crea un room e invita solo a los usuarios con los que quiere escribir
--solo esos usuarios pueden enviar texto
--nadie que no este invitado puede siquiera ver el room
+-uno crea un room e invita solo a los usuarios con los que quiere escribir (OK)
+-solo esos usuarios pueden enviar texto (OK)
+-nadie que no este invitado puede siquiera ver el room (OK)
 
 los mensajes se guardan en la db en texto plano (WRONG!) quiero que sea privado privado, so...
 -hay que encriptar, despues se ve si con encriptacion asimetrica, simetrica o alguna otra que encuentre por ahi

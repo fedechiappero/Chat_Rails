@@ -10,18 +10,16 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :remember_me) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:password, :password_confirmation, :current_password, :avatar) }
+    devise_parameter_sanitizer.permit(:sign_up) do |user|
+      user.permit(:email, :password, :password_confirmation, :remember_me)
+    end
+    devise_parameter_sanitizer.permit(:account_update) do |user|
+      user.permit(:password, :password_confirmation, :current_password, :avatar)
+    end
   end
 
-=begin
-sugerencia tirada en el log
-  DEPRECATION WARNING: [Devise] Changing the sanitized parameters through "Devise::ParameterSanitizer#for(account_update) is deprecated and it will be removed from Devise 4.2.
-Please use the `permit` method:
-
-  devise_parameter_sanitizer.permit(:account_update) do |user|
-    # Your block here.
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
-=end
 
 end

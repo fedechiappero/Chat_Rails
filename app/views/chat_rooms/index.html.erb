@@ -3,5 +3,15 @@
 <p class="lead"><%= link_to 'New chat room', new_chat_room_path, class: 'btn btn-primary' %></p>
 
 <ul>
-  <%= render @chat_rooms %>
+  <% if @chat_rooms.any? %>
+    <%= render @chat_rooms %>
+  <% else %>
+    <p class="text-muted">You don't have any started chat yet</p>
+  <% end %>
+
+  <% @users = User.all %>
+  <% @users.each do |user| %>
+      <%= image_tag user.avatar.url(:thumb) %>
+      <%= user.email %><br/>
+  <% end %>
 </ul>
