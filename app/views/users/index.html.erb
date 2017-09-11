@@ -1,0 +1,10 @@
+<h1>Users list</h1>
+
+<% @users = User.all %>
+<% @users.each do |user| %>
+    <%= image_tag user.avatar.url(:thumb) %>
+    <%= user.email %>
+    <%= link_to 'Send Message' %> <br/>
+<% end %>
+
+<p>falta poner el link a la creacion del chatroom y pasar el id del usuario para que se tilde automaticamente</p>

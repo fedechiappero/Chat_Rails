@@ -14,11 +14,18 @@ class ChatRoomsController < ApplicationController
 
   def create #guarda un chat en la db
     @chat_room = current_user.chat_rooms.build(chat_room_params)
-    if @chat_room.save
-      flash[:success] = 'Chat room added!'
-      redirect_to chat_rooms_path
+
+    if @chat_room.valid?
+      if @chat_room.save
+        flash[:success] = 'Chat room added!'
+        redirect_to chat_rooms_path
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      title = ''
+      title = @chat_room.user_ids.inspect
+      render plain: title.inspect
     end
   end
 
