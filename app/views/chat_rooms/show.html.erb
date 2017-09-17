@@ -15,4 +15,10 @@
   </div>
 
   <%= f.submit 'Post', class: 'btn btn-primary btn-lg' %>
+
+<% end %>
+
+<%= form_tag({:action => 'update'}, method: :patch) do %>
+    <%= hidden_field_tag 'chat_room_id', @chat_room.id %>
+    <%= submit_tag 'Leave chat', name: 'leave', class: 'btn btn-danger btn-lg pull-xs-right' %>
 <% end %>
