@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :chat_rooms, only: [:new, :create, :show, :index, :update]
+  resources :chat_rooms, only: [:new, :create, :show, :index, :update, :edit]
 
   resources :users, only: [:index]
 

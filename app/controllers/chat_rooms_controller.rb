@@ -15,16 +15,7 @@ class ChatRoomsController < ApplicationController
   def create #guarda un chat en la db
     @chat_room = current_user.chat_rooms.build(chat_room_params)
 
-    if @chat_room.valid?
-      #tengo que ver como invertir la condicion del if para evitar este espacio
-    else#no es valido porque falta el titulo, entonces se compone con el nombre de los usuarios
-      title = ''
-      @chat_room.user_ids.each do |iduser|
-        @user = User.find(iduser)
-        title += @user.name + ' '
-      end
-      @chat_room.title = title
-    end
+    build_title
 
     if @chat_room.save
       flash[:success] = 'Chat room added!'
@@ -35,13 +26,25 @@ class ChatRoomsController < ApplicationController
 
   end
 
+  def edit
+    @chat_room = ChatRoom.find params[:id]
+  end
+
   def update
-    if params[:leave]
-      @participant = Participant.find_by(:user_id => current_user.id, :chat_room => params[:chat_room_id])
-      @participant.destroy
-      flash[:success] = 'You just left the chat'
-      redirect_to chat_rooms_path
-    end
+    # if params[:leave]
+    #   @participant = Participant.find_by(:user_id => current_user.id, :chat_room => params[:chat_room_id])
+    #   @participant.destroy
+    #   flash[:success] = 'You just left the chat'
+    #   redirect_to chat_rooms_path
+    # end
+
+    @chat_room = ChatRoom.find params[:id]
+
+    build_title
+
+    @chat_room.update chat_room_params
+
+    redirect_to chat_room_path
   end
 
   def show
@@ -57,5 +60,17 @@ class ChatRoomsController < ApplicationController
 
   def chat_room_params
     params.require(:chat_room).permit(:title, :user_ids => [])#permitimos que el usuario ingrese un titulo y los participantes
+  end
+
+  def build_title
+    #person.errors[:name]
+    if @chat_room.errors[:title]
+      title = ''
+      @chat_room.user_ids.each do |iduser|
+        @user = User.find(iduser)
+        title += @user.name + ' '
+      @chat_room.title = title
+      end
+    end
   end
 end
