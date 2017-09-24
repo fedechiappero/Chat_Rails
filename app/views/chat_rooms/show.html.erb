@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-9">
+    <div class="col">
       <h1><%= @chat_room.title %></h1>
     </div>
-    <div class="col-3">
-      <%= link_to 'Edit chat', edit_chat_room_path(@chat_room)%>
+    <div class="col">
+      <%= link_to 'Edit chat', edit_chat_room_path(@chat_room), class: 'btn btn-primary pull-xs-right'%>
     </div>
   </div>
 </div>
@@ -24,16 +24,17 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-9">
+      <div class="col">
         <%= f.submit 'Post', class: 'btn btn-primary btn-lg' %>
       </div>
-
-<% end %>
-      <div class="col-3">
-      <%= form_tag({:action => 'update'}, method: :patch) do %>
-          <%= hidden_field_tag 'chat_room_id', @chat_room.id %>
-          <%= submit_tag 'Leave chat', name: 'leave', class: 'btn btn-danger pull-xs-right', data: {confirm: 'Are you sure?'}%>
-      <% end %>
+      <div class="col">
+        <%= link_to 'Leave',
+                    participant_path(@chat_room),
+                    method: :delete,
+                    class: 'btn btn-danger pull-xs-right',
+                    data: {confirm: 'Are you sure?'} %>
       </div>
     </div>
+    </div>
   </div>
+<% end %>

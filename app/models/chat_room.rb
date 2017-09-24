@@ -3,5 +3,5 @@ class ChatRoom < ApplicationRecord
   has_many :users, through: :participants
   has_many :messages, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, presence: true, allow_blank: true
 end

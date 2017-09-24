@@ -31,20 +31,18 @@ class ChatRoomsController < ApplicationController
   end
 
   def update
-    # if params[:leave]
-    #   @participant = Participant.find_by(:user_id => current_user.id, :chat_room => params[:chat_room_id])
-    #   @participant.destroy
-    #   flash[:success] = 'You just left the chat'
-    #   redirect_to chat_rooms_path
-    # end
 
     @chat_room = ChatRoom.find params[:id]
 
-    build_title
+    build_title#por alguna razon desconocida esto no funciona aca, pero en el create si
 
-    @chat_room.update chat_room_params
+    if @chat_room.update(chat_room_params)
+      flash[:success] = 'Chat room modified!'
+      redirect_to chat_room_path
+    else
+      render 'edit'
+    end
 
-    redirect_to chat_room_path
   end
 
   def show
@@ -56,6 +54,15 @@ class ChatRoomsController < ApplicationController
     end
   end
 
+  def destroy
+
+    @chat_room = ChatRoom.find params[:id]
+
+    if @chat_room.destroy
+      redirect_to chat_rooms_path
+    end
+  end
+
   private
 
   def chat_room_params
@@ -63,8 +70,7 @@ class ChatRoomsController < ApplicationController
   end
 
   def build_title
-    #person.errors[:name]
-    if @chat_room.errors[:title]
+    if @chat_room.title.blank? || @chat_room.title == '' || @chat_room.title == nil
       title = ''
       @chat_room.user_ids.each do |iduser|
         @user = User.find(iduser)
