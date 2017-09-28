@@ -15,12 +15,20 @@
 
     <ul class="nav navbar-nav pull-xs-right">
       <% if user_signed_in? %>
+        <% if current_user.role == 'ADMIN' %>
+          <li class="nav-item active">
+            <%= link_to 'Admin stuff', users_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+        <li class="nav-item active">
+          <%= link_to 'Users', users_path, class: 'nav-link' %>
+        </li>
         <li class="nav-item">
           <span class="text-muted">Logged in as <strong><%= current_user.name %></strong></span>
         </li>
-          <li class="nav-item">
-            <%= image_tag current_user.avatar.url(:thumb) %>
-          </li>
+        <li class="nav-item">
+          <%= image_tag current_user.avatar.url(:thumb) %>
+        </li>
         <li class="nav-item active">
           <%= link_to 'Account', edit_user_registration_path, class: 'nav-link' %>
         </li>
@@ -29,7 +37,7 @@
         </li>
       <% else %>
         <li class="nav-item active">
-          <%= link_to 'Sign up', new_user_registration_path, :class => 'nav-link'  %>
+          <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link'  %>
         </li>
       <% end %>
     </ul>

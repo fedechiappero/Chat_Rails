@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index]
 
-  resources :participants, only: [:destroy]
+  resources :participants, only: [:create, :destroy]
+
+  #post 'participants' => 'participants#create', as: :create_participant
 
   mount ActionCable.server => '/cable'
 

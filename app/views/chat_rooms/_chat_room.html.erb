@@ -1,1 +1,6 @@
-<li><%= link_to "Enter #{chat_room.title}", chat_room_path(chat_room) %></li>
+<li>
+  <%= link_to "Enter #{chat_room.title}", chat_room_path(chat_room) %> </br>
+  <% if chat_room.messages.exists? %>
+      <p class='text-muted'><%= chat_room.messages.last.body.truncate(50) %></p>
+  <% end %>
+</li>
