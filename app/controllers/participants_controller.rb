@@ -1,6 +1,6 @@
 class ParticipantsController < ApplicationController
 
-  def create#falta controlar que si el chat ya existe te mande derecho sin crearlo de nuevo
+  def create
 
     @chat_room = Participant.find_by_sql(['SELECT chat_room_id FROM participants WHERE chat_room_id IN
                                           (SELECT chat_room_id FROM participants WHERE user_id = ? AND chat_room_id IN
