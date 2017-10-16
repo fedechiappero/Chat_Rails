@@ -7,6 +7,16 @@ Rails.application.routes.draw do
 
   resources :participants, only: [:create, :destroy]
 
+  resources :charts, only: [:index]
+
+  resources :charts, only: [] do
+    collection do
+      get 'users_by_chat'
+      get 'popular_users'
+      get 'current_day_messages'
+    end
+  end
+
   #post 'participants' => 'participants#create', as: :create_participant
 
   mount ActionCable.server => '/cable'

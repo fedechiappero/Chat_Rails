@@ -37,3 +37,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # image upload
 gem 'paperclip', '~> 5.0.0'
+
+#charts
+gem 'chartkick'
+
+gem 'hightop'

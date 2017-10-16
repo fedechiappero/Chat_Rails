@@ -47,6 +47,7 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
     builder (3.2.2)
+    chartkick (2.2.4)
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -69,6 +70,8 @@ GEM
     execjs (2.7.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    hightop (0.2.0)
+      activerecord
     i18n (0.7.0)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
@@ -190,8 +193,10 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha3)
+  chartkick
   coffee-rails (~> 4.1.0)
   devise
+  hightop
   jquery-rails
   paperclip (~> 5.0.0)
   pg
