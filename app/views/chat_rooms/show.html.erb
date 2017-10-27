@@ -25,7 +25,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <%= f.submit 'Post', class: 'btn btn-primary btn-lg' %>
+        <%= f.submit 'Post', class: 'btn btn-primary btn-lg', id: 'button_send' %>
       </div>
       <div class="col">
         <%= link_to 'Leave',
@@ -37,4 +37,12 @@
     </div>
     </div>
   </div>
+
+    <script type="text/javascript" charset="utf-8">
+      $('#message_body').keyup(function(event){
+        if(event.keyCode === 13){
+          $('#button_send').click();
+        }
+      })
+    </script>
 <% end %>
