@@ -12,6 +12,7 @@
 //
 //= require jquery2
 //= require jquery_ujs
+//= require bootstrap
 //= require cable
 //= require turbolinks
 //= require highcharts

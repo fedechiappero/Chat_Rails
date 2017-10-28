@@ -13,9 +13,10 @@ class ChatRoomsController < ApplicationController
   end
 
   def create #guarda un chat en la db
+
     @chat_room = current_user.chat_rooms.build(chat_room_params)
 
-    build_title
+    @chat_room.title = build_title
 
     if @chat_room.save
       flash[:success] = 'Chat room added!'
@@ -34,7 +35,7 @@ class ChatRoomsController < ApplicationController
 
     @chat_room = ChatRoom.find params[:id]
 
-    build_title#por alguna razon desconocida esto no funciona aca, pero en el create si
+    params[:chat_room][:title] = build_title
 
     if @chat_room.update(chat_room_params)
       flash[:success] = 'Chat room modified!'
@@ -46,7 +47,7 @@ class ChatRoomsController < ApplicationController
   end
 
   def show
-    @chat_room = ChatRoom.includes(:messages).joins(:participants).find_by('chat_rooms.id' => params[:id], 'participants.user_id' => current_user.id.to_s)
+    @chat_room = ChatRoom.includes(:messages).joins(:participants).includes(:users).find_by('chat_rooms.id' => params[:id], 'participants.user_id' => current_user.id.to_s)
     if @chat_room != nil
       @message = Message.new
     else
@@ -70,13 +71,15 @@ class ChatRoomsController < ApplicationController
   end
 
   def build_title
-    if @chat_room.title.blank? || @chat_room.title == '' || @chat_room.title == nil
+    if params[:chat_room][:title].blank? || params[:chat_room][:title] == '' || params[:chat_room][:title] == nil
       title = ''
       @chat_room.user_ids.each do |iduser|
         @user = User.find(iduser)
         title += @user.name + ' '
-      @chat_room.title = title
       end
+      title
+    else
+      params[:chat_room][:title]
     end
   end
 end

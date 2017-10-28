@@ -5,6 +5,26 @@
     </div>
     <div class="col">
       <%= link_to 'Edit chat', edit_chat_room_path(@chat_room), class: 'btn btn-primary pull-xs-right'%>
+      <button type="button" class="btn btn-info pull-xs-right" data-toggle="modal" data-target="#myModal">Show participants</button>
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title">Participants</h3>
+            </div>
+            <div class="modal-body">
+              <ul>
+                <% @chat_room.participants.each do |user| %>
+                  <li>
+                    <%= image_tag user.user.avatar.url(:thumb) %> <%= user.user.name %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -39,10 +59,23 @@
   </div>
 
     <script type="text/javascript" charset="utf-8">
+
       $('#message_body').keyup(function(event){
         if(event.keyCode === 13){
           $('#button_send').click();
         }
-      })
+      });
+
+      function sendBye() {
+        $('#message_body').append("Just left the chat");
+        $('#button_send').click();
+      }
+
+      $(document).on('confirm:complete', function (e, answer) {
+        if (answer) {
+          sendBye();
+        }
+      });
+
     </script>
 <% end %>
