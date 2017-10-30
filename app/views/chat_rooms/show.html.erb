@@ -17,7 +17,7 @@
               <ul>
                 <% @chat_room.participants.each do |user| %>
                   <li>
-                    <%= image_tag user.user.avatar.url(:thumb) %> <%= user.user.name %>
+                    <%= image_tag user.user.avatar.url(:thumb) %> <%= online_status user.user %>
                   </li>
                 <% end %>
               </ul>

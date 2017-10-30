@@ -12,6 +12,10 @@ class User < ApplicationRecord
     email.split('@')[0]
   end
 
+  def online?
+    !Redis.new.get("user_#{self.id}_online").nil?
+  end
+
   #this line prevents users from using any email server
   validates_format_of :email, with: /\@yourdomain\.com/, message: 'You should have an email from yourdomain.com'
 
