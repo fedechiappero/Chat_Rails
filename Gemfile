@@ -42,3 +42,5 @@ gem 'paperclip', '~> 5.0.0'
 gem 'chartkick'
 
 gem 'hightop'
+
+gem 'rails_admin', '~> 1.2'
