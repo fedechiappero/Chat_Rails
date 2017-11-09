@@ -75,14 +75,14 @@ class ParticipantsController < ApplicationController
     @participant.destroy#elimino al participante
     flash[:success] = 'You just left the chat.'
 
-    @chat_room = ChatRoom.find(params[:id])#busco el chat
+    #@chat_room = ChatRoom.find(params[:id])#busco el chat
 
-    if @chat_room.user_ids.count == 0#si no tiene mas participantes, se elimina con todo y mensajes
+    #if @chat_room.user_ids.count == 0#si no tiene mas participantes, se elimina con todo y mensajes
 
       #redirect_to chat_room_path(@chat_room), action(:destroy) and return
-      redirect_to controller: :chat_rooms, action: :destroy, id: params[:id] and return #este llamado seria el que no anda
+      #redirect_to controller: :chat_rooms, action: :destroy, id: params[:id] and return #este llamado seria el que no anda
       #redirect_to :cas400ontroller => 'post', :action => 'index'
-    end
+    #end
     redirect_to chat_rooms_path
   end
 end
