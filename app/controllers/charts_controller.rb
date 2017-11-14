@@ -1,16 +1,18 @@
 class ChartsController < ApplicationController
+
+  before_action :admin?
+
   def index
-    @participants = Participant.all
   end
 
   def users_by_chat
     result = Participant.group(:chat_room_id).count
-    render json: [{name: 'Count', data: result}]
+    render json: result.first(5)
   end
 
   def popular_users
-    result = Participant.group(:user_id).count
-    render json: [{name: 'Count', data: result}]
+    result = Participant.includes(:user).group(:user_id).order('count_id DESC').count('id')
+    render json: result.first(5)
   end
 
   def current_day_messages #no es current day, son los mensajes de toda la semana
@@ -23,4 +25,11 @@ class ChartsController < ApplicationController
     end
     render json: chart_data
   end
+
+  def admin?
+    if !current_user.admin
+      redirect_to root_path
+    end
+  end
+
 end

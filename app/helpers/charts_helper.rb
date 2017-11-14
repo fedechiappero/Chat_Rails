@@ -10,10 +10,10 @@ module ChartsHelper
         },
         xAxis: {
             title: {
-                text: 'Chat'
+                text: 'Chats'
             }
         },
-        refresh: 10
+        #refresh: 10
     }
   end
 
@@ -23,12 +23,12 @@ module ChartsHelper
         yAxis: {
             allowDecimals: false,
             title: {
-                text: 'Users count'
+                text: 'Chats'
             }
         },
         xAxis: {
             title: {
-                text: 'Chats'
+                text: 'Users'
             }
         }
     }
@@ -36,12 +36,16 @@ module ChartsHelper
 
   def current_day_messages
     line_chart current_day_messages_charts_path, height: '500px', library: {
-        title: {text: 'Current day messages'},
+        title: {text: 'Current week messages'},
         yAxis: {
             allowDecimals: false,
             title: {
                 text: 'Messages'
             }
+        },
+
+        xAxis: {
+
         }
     }
   end
