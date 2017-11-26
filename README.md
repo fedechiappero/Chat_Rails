@@ -21,8 +21,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```
 Ruby 2.3.1p112
-```
-```
+
 Rails 5.1.3
 ```
 
@@ -36,8 +35,7 @@ bundle install
 Then
 ```
 rake db:create
-```
-```
+
 rake db:reset db:migrate
 ```
 
@@ -45,8 +43,3 @@ rake db:reset db:migrate
 
 * **Ilya Bodrov-Krukowski** - *Initial work* - [Repo](https://github.com/bodrovis/Sitepoint-source/tree/master/Chat_with_ActionCable_and_Devise) extracted from * [this post](https://www.sitepoint.com/create-a-chat-app-with-rails-5-actioncable-and-devise/)
 * **Chiappero Federico** - *Improve and expand project*
-
-
-CAMBIOS no tan PRINCIPALES A HACER:
--menu bonito en el header con opciones de navegacion(OK)
--la identificacion de los usuarios es por email, podrian loguearse solo con correos del dominio de la empresa, en vez de gmail, outlook, etc (por ahora solo puse que el email no se puede editar)
