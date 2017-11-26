@@ -1,53 +1,52 @@
-original:
+# Chat
 
-repo: https://github.com/bodrovis/Sitepoint-source/tree/master/Chat_with_ActionCable_and_Devise
+This project was made as final project of the course Software Quality.
+A private chat room thought to be used by an enterprise for their internal communication.
 
-web: https://www.sitepoint.com/create-a-chat-app-with-rails-5-actioncable-and-devise/
+## Functionality
 
-creo que los pasos desde ahi para poder ejecutarlo fueron:
+* Autentication with Devise.
+* Registration is only with an email the enterprise email server (@yourdomain.com by default).
+* Online/Offline indicator inside chat room.
+* Private chat rooms, either personal or group.
+* All the messages are encrypted in the server-side.
+* Admin panel Rails Admin.
 
-obviamente ya tengo ruby 2.3.1p112 y Rails 5.1.3 ya instalados
 
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+```
+Ruby 2.3.1p112
+```
+```
+Rails 5.1.3
+```
+
+### Installing
+
+
+First
+```
 bundle install
-
-rails generate devise:install
-rails generate devise User
-rails generate devise:views
-rails db:migrate
-
-sobre la db, estos comandos son mas probables(segun los apuntes de Matias Vives):
-
+```
+Then
+```
 rake db:create
+```
+```
 rake db:reset db:migrate
+```
 
+## Authors
 
-hasta aca es lo basico, hay un tipo fosuserbundle de symfony que se llama devise, permite
--logearse
--crear usuarios
--cambiar contraseña
--etc
+* **Ilya Bodrov-Krukowski** - *Initial work* - [Repo](https://github.com/bodrovis/Sitepoint-source/tree/master/Chat_with_ActionCable_and_Devise) extracted from * [this post](https://www.sitepoint.com/create-a-chat-app-with-rails-5-actioncable-and-devise/)
+* **Chiappero Federico** - *Improve and expand project*
 
-una seccion para crear room chats y enviar texto
-
-los demas usuarios entran al room y hacen lo mismo
-
-CAMBIOS PRINCIPALES A HACER:
-
-los room chat son publicos, uno lo crea, cualquiera lo ve y se mete (WRONG!) quiero que sea privado, so...
--uno crea un room e invita solo a los usuarios con los que quiere escribir (OK)
--solo esos usuarios pueden enviar texto (OK)
--nadie que no este invitado puede siquiera ver el room (OK)
-
-los mensajes se guardan en la db en texto plano (WRONG!) quiero que sea privado privado, so...
--hay que encriptar, despues se ve si con encriptacion asimetrica, simetrica o alguna otra que encuentre por ahi
 
 CAMBIOS no tan PRINCIPALES A HACER:
 -menu bonito en el header con opciones de navegacion(OK)
 -la identificacion de los usuarios es por email, podrian loguearse solo con correos del dominio de la empresa, en vez de gmail, outlook, etc (por ahora solo puse que el email no se puede editar)
-
-https://stackoverflow.com/questions/26721790/rails-configuration-secret-key-base-returning-nil/26722044#26722044
-http://api.rubyonrails.org/classes/ActiveSupport/MessageEncryptor.html
-https://stackoverflow.com/questions/5492377/encrypt-decrypt-using-rails
-
-dentro de un controlador, render plain: params[:paramentro].inspect es como el var_dump de php
-en la vista <%= link_to 'somewhere', image, method: :delete, data: {confirm: 'seguro?'}%>
