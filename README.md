@@ -6,7 +6,7 @@ A private chat room thought to be used by an enterprise for their internal commu
 ## Functionality
 
 * Autentication with Devise.
-* Registration is only with an email the enterprise email server (@yourdomain.com by default).
+* Registration is only with an email provided by the enterprise email server (@yourdomain.com by default).
 * Online/Offline indicator inside chat room.
 * Private chat rooms, either personal or group.
 * All the messages are encrypted in the server-side.
@@ -41,5 +41,5 @@ rake db:reset db:migrate
 
 ## Authors
 
-* **Ilya Bodrov-Krukowski** - *Initial work* - [Repo](https://github.com/bodrovis/Sitepoint-source/tree/master/Chat_with_ActionCable_and_Devise) extracted from * [this post](https://www.sitepoint.com/create-a-chat-app-with-rails-5-actioncable-and-devise/)
+* **Ilya Bodrov-Krukowski** - *Initial work* - [repo](https://github.com/bodrovis/Sitepoint-source/tree/master/Chat_with_ActionCable_and_Devise) extracted from [this post](https://www.sitepoint.com/create-a-chat-app-with-rails-5-actioncable-and-devise/)
 * **Chiappero Federico** - *Improve and expand project*

@@ -1,18 +1,13 @@
 class ChatRoomsController < ApplicationController
   def index
-    #@chat_rooms = ChatRoom.where user_id: current_user.id #NO ALL -> where chatroom.participantes.id = usuarioLogueado.id OR el logueado es el admin
-
-    #@chat_rooms = ChatRoom.joins('INNER JOIN participants ON chat_rooms.id = participants.chat_room_id WHERE participants.user_id = ',current_user.id.to_s)
     @chat_rooms = ChatRoom.joins(:participants).where('participants.user_id' => current_user.id.to_s).distinct.order('chat_rooms.updated_at DESC')
-    #render plain: @chat_rooms.inspect
-    #@users = User.all
   end
 
-  def new #para crear un nuevo chat
+  def new
     @chat_room = ChatRoom.new
   end
 
-  def create #guarda un chat en la db
+  def create
 
     @chat_room = current_user.chat_rooms.build(chat_room_params)
 
@@ -51,7 +46,7 @@ class ChatRoomsController < ApplicationController
     if @chat_room != nil
       @message = Message.new
     else
-      not_found #en realidad deberia ser un 403
+      not_found
     end
   end
 
@@ -67,10 +62,10 @@ class ChatRoomsController < ApplicationController
   private
 
   def chat_room_params
-    params.require(:chat_room).permit(:title, :user_ids => [])#permitimos que el usuario ingrese un titulo y los participantes
+    params.require(:chat_room).permit(:title, :user_ids => [])
   end
 
-  def build_title
+  def build_title #if the user doenst type a title it be build with the participant's names
     if params[:chat_room][:title].blank? || params[:chat_room][:title] == '' || params[:chat_room][:title] == nil
       title = ''
       @chat_room.user_ids.each do |iduser|

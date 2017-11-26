@@ -6,7 +6,7 @@ class ChartsController < ApplicationController
   end
 
   def users_by_chat
-    result = Participant.group(:chat_room_id).count
+    result = Participant.group(:chat_room_id).count #this query doesnt reflect what i wanted to do
     render json: result.first(5)
   end
 
